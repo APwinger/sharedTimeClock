@@ -1,42 +1,35 @@
 package com.example.springtemplate.models;
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 
 import static java.time.temporal.ChronoUnit.SECONDS;
 
 @Entity
-@Table(name="durations")
-public class Duration {
+@Table(name="minor_tasks")
+public class Minor_Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private LocalDateTime start_time;
-    private LocalDateTime end_time;
-    private int timed_duration;
-    //fk to minor task
-    private int minor_task;
+    String description;
+    int user;
+    int project;
 
 
     public int getId() { return id; }
     public void setId(Integer id) { this.id = id; }
-    public int getDuration() { return timed_duration; }
-    public int getMinor_task() {return minor_task;}
-    //im sorry idk whats happened to my capitalization but its happening.
-    public void endDuration() {
-        this.end_time = LocalDateTime.now();
-        this.timed_duration = (int) SECONDS.between(this.start_time,this.end_time);
+    public String getDescription() { return this.description; }
+    public void setDescription(String desc) { this.description = desc;}
+    public int getUser() {return this.user;}
+    public void setUser(int userId) {this.user = userId;}
+    public int getProject() {return this.project;}
+    public void setProject(int projectId) {this.project = projectId;}
+
+
+    public Minor_Task(int userId, int projectId, String desc) {
+    this.user = userId;
+    this.project = projectId;
+    this.description = desc;
     }
 
-
-    //creating a duration "starts" a duration
-    public Duration(int minorTask) {
-    this.minor_task = minorTask;
-    this.start_time = LocalDateTime.now();
-    }
-
-
-    public Duration() {
-        this.start_time = LocalDateTime.now();
-    }
+    public Minor_Task() {}
 }

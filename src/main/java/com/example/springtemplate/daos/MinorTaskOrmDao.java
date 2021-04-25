@@ -1,6 +1,6 @@
 package com.example.springtemplate.daos;
 
-import com.example.springtemplate.models.Course;
+import com.example.springtemplate.models.Minor_Task;
 import com.example.springtemplate.repositories.MinorTaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -9,47 +9,45 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*")
-public class CourseOrmDao {
+public class MinorTaskOrmDao {
     @Autowired
     MinorTaskRepository minorTaskRepository;
 
-    @PostMapping("/api/courses")
-    public Course createCourse(@RequestBody Course course) {
-        return minorTaskRepository.save(course);
+    @GetMapping("/orm/create/minortask/{userId}/{projectId}/{description}")
+    public Minor_Task createMinor_Task(
+      @PathVariable("userId") Integer userId,
+      @PathVariable("projectId") Integer projectId,
+      @PathVariable("description") String description) {
+        Minor_Task mt = new Minor_Task(userId,projectId,description);
+        return minorTaskRepository.save(mt);
     }
     
-    @GetMapping("/api/courses")
-    public List<Course> findAllCourses() {
-        return (List<Course>) minorTaskRepository.findAll();
+    @GetMapping("/orm/find/minortasks")
+    public List<Minor_Task> findAllMinor_Tasks() {
+        return (List<Minor_Task>) minorTaskRepository.findAll();
     }
     
-    @GetMapping("/api/courses/{courseId}")
-    public Course findCourseById(
-            @PathVariable("courseId") Integer id) {
+    @GetMapping("/orm/find/minortask/{Minor_TaskId}")
+    public Minor_Task findMinor_TaskById(
+            @PathVariable("Minor_TaskId") Integer id) {
         return minorTaskRepository.findById(id).get();
     }
 
-    @GetMapping("/api/update/course/{courseId}/{password}")
-    public Course updateCourse(
-            @PathVariable("courseId") Integer id,
-            @PathVariable("password") String newPass) {
-        Course course = this.findCourseById(id);
-        course.setTitle(newPass);
-        return minorTaskRepository.save(course);
+
+    @GetMapping("/orm/update/minortask/{Minor_TaskId}/{userId}/{projectId}")
+    public Minor_Task updateMinor_Task(
+      @PathVariable("Minor_TaskId") Integer id,
+      @PathVariable("userId") Integer userId,
+      @PathVariable("projectId") Integer projectId) {
+        Minor_Task minorTask = this.findMinor_TaskById(id);
+        minorTask.setProject(projectId);
+        minorTask.setUser(userId);
+        return minorTaskRepository.save(minorTask);
     }
 
-    @PutMapping("/api/courses/{courseId}")
-    public Course updateCourse(
-            @PathVariable("courseId") Integer id,
-            @RequestBody() Course newCourse) {
-        Course course = this.findCourseById(id);
-        course.setTitle(newCourse.getTitle());
-        return minorTaskRepository.save(course);
-    }
-
-    @DeleteMapping("/api/courses/{courseId}")
-    public void deleteCourse(
-            @PathVariable("courseId") Integer id) {
+    @DeleteMapping("/orm/delete/minortask/{Minor_TaskId}")
+    public void deleteMinor_Task(
+            @PathVariable("Minor_TaskId") Integer id) {
         minorTaskRepository.deleteById(id);
     }
 }

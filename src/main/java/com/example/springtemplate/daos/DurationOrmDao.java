@@ -1,51 +1,54 @@
 package com.example.springtemplate.daos;
 
+import com.example.springtemplate.models.Duration;
+import com.example.springtemplate.models.Minor_Task;
 import com.example.springtemplate.models.User;
-import com.example.springtemplate.repositories.UserRepository;
+import com.example.springtemplate.repositories.DurationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:8080")
-public class UserOrmDao {
+public class DurationOrmDao {
     @Autowired
-    UserRepository userRepository;
+    DurationRepository durationRepository;
 
-    @GetMapping("/orm/create/user/{fn}/{ln}/{un}/{pw}")
-    public User createUser(
-      @PathVariable("fn") String first,
-      @PathVariable("ln") String last,
-      @PathVariable("un") String uname,
-      @PathVariable("pw") String pass) {
-        User user = new User(first, last, uname, pass, null);
-        return userRepository.save(user);
+    @GetMapping("/orm/create/duration/{mtID}")
+    public Duration startDuration(
+      @PathVariable("mtID") int minorTaskID) {
+        Duration duration = new Duration(minorTaskID);
+        return durationRepository.save(duration);
+    }
+
+    @GetMapping("/orm/end/duration/{durationId}")
+    public Duration endDuration(
+      @PathVariable("durationId") Integer id) {
+        Duration duration = durationRepository.findDurationById(id);
+        duration.endDuration();
+        return durationRepository.save(duration);
     }
     
-    @GetMapping("/orm/find/users")
-    public List<User> findAllUsers() {
-        return userRepository.findAllUsers();
+    @GetMapping("/orm/find/durations")
+    public List<Duration> findAllDurations() {
+        return durationRepository.findAllDurations();
     }
 
-    @GetMapping("/orm/find/user/{userId}")
-    public User findUserById(
-      @PathVariable("userId") Integer id) {
-        return userRepository.findUserById(id);
+    @GetMapping("/orm/find/durationsbymtid/{mtID}")
+    public List<Duration> findDurationByMinorTaskId(@PathVariable("mtID") int minorTaskID) {
+        return durationRepository.findDurationByMinorTaskId(minorTaskID);
     }
 
-    @GetMapping("/orm/update/user/{userId}/{password}")
-    public User updateUser(
-      @PathVariable("userId") Integer id,
-      @PathVariable("password") String newPass) {
-        User user = userRepository.findUserById(id);
-        user.setPassword(newPass);
-        return userRepository.save(user);
+    @GetMapping("/orm/find/duration/{durationId}")
+    public Duration findDurationById(
+      @PathVariable("durationId") Integer id) {
+        return durationRepository.findDurationById(id);
     }
 
-
-    @DeleteMapping("/orm/users/{userId}")
-    public void deleteUser(
-      @PathVariable("userId") Integer id) {
-        userRepository.deleteById(id);
+    @DeleteMapping("/orm/users/{durationId}")
+    public void deleteDuration(
+      @PathVariable("durationId") Integer id) {
+        durationRepository.deleteById(id);
     }
 }

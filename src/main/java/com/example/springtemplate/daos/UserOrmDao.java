@@ -7,44 +7,45 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:8080")
 public class UserOrmDao {
     @Autowired
     UserRepository userRepository;
 
-    @PostMapping("/api/users")
-    public User createUser(@RequestBody User user) {
+    @GetMapping("/orm/create/user/{fn}/{ln}/{un}/{pw}")
+    public User createUser(
+      @PathVariable("fn") String first,
+      @PathVariable("ln") String last,
+      @PathVariable("un") String uname,
+      @PathVariable("pw") String pass) {
+        User user = new User(first, last, uname, pass, null);
         return userRepository.save(user);
     }
     
-    @GetMapping("/api/users")
+    @GetMapping("/orm/find/users")
     public List<User> findAllUsers() {
         return userRepository.findAllUsers();
     }
-    
-    @GetMapping("/api/users/{userId}")
+
+    @GetMapping("/orm/find/user/{userId}")
     public User findUserById(
-            @PathVariable("userId") Integer id) {
+      @PathVariable("userId") Integer id) {
         return userRepository.findUserById(id);
     }
-    
-    @PutMapping("/api/users/{userId}")
+
+    @GetMapping("/orm/update/user/{userId}/{password}")
     public User updateUser(
-            @PathVariable("userId") Integer id,
-            @RequestBody User userUpdates) {
+      @PathVariable("userId") Integer id,
+      @PathVariable("password") String newPass) {
         User user = userRepository.findUserById(id);
-        user.setFirstName(userUpdates.getFirstName());
-        user.setLastName(userUpdates.getLastName());
-        user.setUsername(userUpdates.getUsername());
-        user.setPassword(userUpdates.getPassword());
-        user.setProfilePicture(userUpdates.getProfilePicture());
-        user.setHandle(userUpdates.getHandle());
+        user.setPassword(newPass);
         return userRepository.save(user);
     }
-    
-    @DeleteMapping("/api/users/{userId}")
+
+
+    @DeleteMapping("/orm/users/{userId}")
     public void deleteUser(
-            @PathVariable("userId") Integer id) {
+      @PathVariable("userId") Integer id) {
         userRepository.deleteById(id);
     }
 }

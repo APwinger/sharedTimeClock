@@ -1,27 +1,42 @@
 package com.example.springtemplate.models;
-
 import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+
+import static java.time.temporal.ChronoUnit.SECONDS;
 
 @Entity
 @Table(name="durations")
-public class duration {
+public class Duration {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String start_time;
-    private String end_time;
+    private LocalDateTime start_time;
+    private LocalDateTime end_time;
     private int timed_duration;
+    //fk to minor task
+    private int minor_task;
 
 
     public int getId() { return id; }
     public void setId(Integer id) { this.id = id; }
     public int getDuration() { return timed_duration; }
-    public void increaseDuration(int time) { this.timed_duration = timed_duration + time;}
-
-
-    public durations(String firstName, String lastName, String username, String password, String email) {
-
+    public int getMinor_task() {return minor_task;}
+    //im sorry idk whats happened to my capitalization but its happening.
+    public void endDuration() {
+        this.end_time = LocalDateTime.now();
+        this.timed_duration = (int) SECONDS.between(this.start_time,this.end_time);
     }
 
-    public durations() {}
+
+    //creating a duration "starts" a duration
+    public Duration(int minorTask) {
+    this.minor_task = minorTask;
+    this.start_time = LocalDateTime.now();
+    }
+
+
+    public Duration() {
+        this.start_time = LocalDateTime.now();
+    }
 }
