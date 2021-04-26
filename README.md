@@ -19,7 +19,8 @@ Minor tasks are children of Projects and are created by anyone, they are a brief
 
 ## Tables:
 
-###Users
+### Users
+
 ⦁	firstName: String
 ⦁	lastName: String
 ⦁	username: String
@@ -36,14 +37,14 @@ Minor tasks are children of Projects and are created by anyone, they are a brief
 | email       |             | String    |
 | dateOfBirth |             | date      |
 
-Projects
+### Projects
 A Project is a long term task. The description is overarching, could be tied to a specific invoice for example. Minor tasks are the children of projects.
 
 | Field Name  | Description                  | Data Type |
 |-------------|------------------------------|-----------|
 | description | A description of the project | string    |
 
-Users to Projects
+### Users to Projects
 Mapping table between users and projects. The role indicates in what role the user is assigned to the project. A project has managers and assignees. Managers manage the project and can query durations of minor tasks to see time an assignee has put toward the project. Assignees work on the projects. There can be multiple managers and multiple assignees. A manager can be an assignee and vice versa. Any role can create a project and assign managers and assignees to it.
 
 Essentially, this is used to dictate how users will be permitted to interact with a project in the final project.
@@ -52,7 +53,7 @@ Essentially, this is used to dictate how users will be permitted to interact wit
 |------------|------------------------------------------------|-------------|
 | role       | What role the user will play for this project. | role_levels |
 
-Roles enum
+### Roles enum
 Contains the different roles a user can have. Not sure what admin is for yet but I think I will use it later when I add more management functionality. This is a portable enum 
 
 
@@ -61,14 +62,14 @@ Contains the different roles a user can have. Not sure what admin is for yet but
 | level      | I have inserted the values, employee,manager, and admin | string    |
 
 
-Minor Tasks
+### Minor Tasks
 Minor tasks are the day to day things you work on for a project. A minor task is associated with a single user and many durations. Minor tasks are like a descriptive parent container for durations. The user who it is associated with is the one who creates it. No other users should be able to add durations to this minor task. 
 
 | Field Name  | Description                     | Data Type |
 |-------------|---------------------------------|-----------|
 | description | A description of the minor task | string    |
 
-Durations
+### Durations
 Durations represent an amount of time spent working. A duration is created when a worker starts work on a minor task. When a user stops working, the duration's end time is updated.  Many durations can be created for a single minor task to allow for stopping and starting. This table will probably change as this project progresses. 
 
 
