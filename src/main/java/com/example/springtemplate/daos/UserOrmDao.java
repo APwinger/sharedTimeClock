@@ -6,34 +6,40 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
+@CrossOrigin(origins = "*")
 @RestController
-@CrossOrigin(origins = "http://localhost:8080")
 public class UserOrmDao {
     @Autowired
     UserRepository userRepository;
 
-    @GetMapping("/orm/create/user/{fn}/{ln}/{un}/{pw}")
-    public User createUser(
-      @PathVariable("fn") String first,
-      @PathVariable("ln") String last,
-      @PathVariable("un") String uname,
-      @PathVariable("pw") String pass) {
-        User user = new User(first, last, uname, pass, null);
+//    @GetMapping("/orm/user/create/{fn}/{ln}/{un}/{pw}")
+//    public User createUser(
+//      @PathVariable("fn") String first,
+//      @PathVariable("ln") String last,
+//      @PathVariable("un") String uname,
+//      @PathVariable("pw") String pass) {
+//        User user = new User(first, last, uname, pass, null);
+//        return userRepository.save(user);
+//    }
+
+    @PostMapping("/orm/user/create")
+    public User createUser(@RequestBody User user) {
         return userRepository.save(user);
     }
-    
-    @GetMapping("/orm/find/users")
+
+
+    @GetMapping("/orm/user/find")
     public List<User> findAllUsers() {
         return userRepository.findAllUsers();
     }
 
-    @GetMapping("/orm/find/user/{userId}")
+    @GetMapping("/orm/user/find/{userId}")
     public User findUserById(
       @PathVariable("userId") Integer id) {
         return userRepository.findUserById(id);
     }
 
-    @GetMapping("/orm/update/user/{userId}/{password}")
+    @GetMapping("/orm/user/update/{userId}/{password}")
     public User updateUser(
       @PathVariable("userId") Integer id,
       @PathVariable("password") String newPass) {
@@ -43,7 +49,7 @@ public class UserOrmDao {
     }
 
 
-    @DeleteMapping("/orm/users/{userId}")
+    @DeleteMapping("/orm/user/delete/{userId}")
     public void deleteUser(
       @PathVariable("userId") Integer id) {
         userRepository.deleteById(id);

@@ -30,7 +30,7 @@ public class User {
     public String getDob() { return dateOfBirth; }
     public void setDob(String dob) { this.dateOfBirth = dob; }
 
-    public User(String firstName, String lastName, String username, String password,  String email) {
+    public User(String firstName, String lastName, String username, String password, String email) {
         this.username = username;
         this.password = password;
         this.firstname = firstName;

@@ -33,7 +33,7 @@ public class UserToProjectOrmDao {
         return utpRepository.findMapByUserId(id);
     }
 
-    @GetMapping("/orm/update/usertoproject/{mapId}/{userId}/{projectId}/role")
+    @GetMapping("/orm/update/usertoproject/{mapId}/{userId}/{projectId}/{role}")
     public UserToProject updateMapping(
       @PathVariable("userId") Integer id,
       @PathVariable("userId") Integer userId,
