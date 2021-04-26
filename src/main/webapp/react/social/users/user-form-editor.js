@@ -1,8 +1,9 @@
 import userService from "./user-service"
 const {useState, useEffect} = React;
-const {useParams} = window.ReactRouterDOM;
+const {useParams, useHistory} = window.ReactRouterDOM;
 const UserFormEditor = () => {
     const {id} = useParams()
+    const history = useHistory()
     const [user, setUser] = useState({})
     useEffect(() => {
         findUserById(id)
@@ -14,6 +15,14 @@ const UserFormEditor = () => {
     const createUser = (user) =>
         userService.createUser(user)
             .then(() => history.goBack())
+
+     const updateUser = (id, newUser) =>
+            userService.updateUser(id, newUser)
+                .then(() => history.goBack())
+
+    const deleteUser = (id) =>
+            userService.deleteUser(id)
+                .then(() => history.goBack())
     return (
         <div>
             <h2>User Editor</h2>
@@ -57,9 +66,9 @@ const UserFormEditor = () => {
                 </button>
 
                  <button
-                    onClick={() => deleteUser(user.id)}>
-                    Delete
-                  </button>
+                     onClick={() => deleteUser(user.id)}>
+                     Delete
+                 </button>
 
                 <button
                     onClick={() => createUser(user)}>

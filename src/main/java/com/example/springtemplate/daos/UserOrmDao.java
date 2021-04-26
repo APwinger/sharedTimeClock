@@ -39,19 +39,23 @@ public class UserOrmDao {
         return userRepository.findUserById(id);
     }
 
-    @GetMapping("/orm/user/update/{userId}/{password}")
+    @PutMapping("/orm/user/update/{userId}")
     public User updateUser(
       @PathVariable("userId") Integer id,
-      @PathVariable("password") String newPass) {
+      @RequestBody User userUpdates) {
         User user = userRepository.findUserById(id);
-        user.setPassword(newPass);
+        user.setFirstName(userUpdates.getFirstName());
+        user.setLastName(userUpdates.getLastName());
+        user.setUsername(userUpdates.getUsername());
+        user.setPassword(userUpdates.getPassword());
+        user.setEmail(userUpdates.getEmail());
         return userRepository.save(user);
     }
-
 
     @DeleteMapping("/orm/user/delete/{userId}")
     public void deleteUser(
       @PathVariable("userId") Integer id) {
         userRepository.deleteById(id);
     }
+
 }

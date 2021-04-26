@@ -23,7 +23,7 @@ export const createUser = (user) =>
 
 
 export const updateUser = (id, user) =>
-    fetch(`${USERS_URL}/updateUser/{id}`, {
+    fetch(`${USERS_URL}/update/${id}`, {
         method: 'PUT',
         body: JSON.stringify(user),
         headers: {'content-type': 'application/json'}
@@ -38,5 +38,4 @@ findUserById,
 deleteUser,
 createUser,
 updateUser
-
 }
