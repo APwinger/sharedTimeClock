@@ -1,7 +1,7 @@
 # sharedTimeClock
 Final Project for CS3200. 
 
-![UML Diagram](3200 P1.png)
+![UML Diagram](https://github.com/APwinger/sharedTimeClock/blob/main/3200%20P1.png)
 
 ## Overview:
 I want to make a time clock for working remotely. I am responsible for reporting my own hours to my company. This program would allow me (and other employees) to track our hours in an intuitive way that can be viewed by higher ups for better project management. 
