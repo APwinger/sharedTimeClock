@@ -1,7 +1,7 @@
 # sharedTimeClock
 Final Project for CS3200. 
 
-Overview:
+## Overview:
 I want to make a time clock for working remotely. I am responsible for reporting my own hours to my company. This program would allow me (and other employees) to track our hours in an intuitive way that can be viewed by higher ups for better project management. 
 
 The benefit to the employee is they don't need to go back an calculate their hours, they just (voluntarily, this would be the worlds shittiest app if employers required this) indicate when they are or aren’t working.
@@ -17,8 +17,9 @@ Projects should be created by managers and admins.
 
 Minor tasks are children of Projects and are created by anyone, they are a brief description of what is being worked on. 
 
-Tables:
-Users
+## Tables:
+
+###Users
 ⦁	firstName: String
 ⦁	lastName: String
 ⦁	username: String
