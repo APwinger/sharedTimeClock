@@ -21,12 +21,7 @@ Minor tasks are children of Projects and are created by anyone, they are a brief
 
 ### Users
 
-⦁	firstName: String
-⦁	lastName: String
-⦁	username: String
-⦁	password: String
-⦁	email: String
-⦁	dateOfBirth: Date
+Regular old users table, a user can have multiple roles and interact with a project in different ways so the roles are recorded in the mapping tables. 
 
 | Field Name  | Description | Data Type |
 |-------------|-------------|-----------|
@@ -44,7 +39,7 @@ A Project is a long term task. The description is overarching, could be tied to 
 |-------------|------------------------------|-----------|
 | description | A description of the project | string    |
 
-### Users to Projects
+### Users to Projects (many to many mapping table)
 Mapping table between users and projects. The role indicates in what role the user is assigned to the project. A project has managers and assignees. Managers manage the project and can query durations of minor tasks to see time an assignee has put toward the project. Assignees work on the projects. There can be multiple managers and multiple assignees. A manager can be an assignee and vice versa. Any role can create a project and assign managers and assignees to it.
 
 Essentially, this is used to dictate how users will be permitted to interact with a project in the final project.
