@@ -1,6 +1,7 @@
 package com.example.springtemplate.daos;
 
 import com.example.springtemplate.models.Project;
+import com.example.springtemplate.models.User;
 import com.example.springtemplate.repositories.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,34 +14,33 @@ public class ProjectOrmDao {
     @Autowired
     ProjectRepository projectRepository;
 
-    @GetMapping("/orm/create/project/{description}")
-    public Project createProject(
-      @PathVariable("description") String description) {
-        Project project = new Project(description);
+    @PostMapping("/orm/project/create")
+    public Project createProject(@RequestBody Project project) {
         return projectRepository.save(project);
     }
-    
-    @GetMapping("/orm/find/projects")
+
+
+    @GetMapping("/orm/project/find")
     public List<Project> findAllProjects() {
         return (List<Project>) projectRepository.findAll();
     }
     
-    @GetMapping("/orm/find/project/{projectId}")
+    @GetMapping("/orm/project/find/{projectId}")
     public Project findProjectById(
             @PathVariable("projectId") Integer id) {
         return projectRepository.findById(id).get();
     }
 
-    @GetMapping("/orm/update/project/{projectId}/{description}")
+    @PutMapping("/orm/project/update/{projectId}")
     public Project updateProject(
       @PathVariable("projectId") Integer id,
-      @PathVariable("description") String desc) {
-        Project project = this.findProjectById(id);
-        project.setDescription(desc);
+      @RequestBody Project projectUpdates) {
+        Project project = projectRepository.findProjectById(id);
+        project.setDescription(projectUpdates.getDescription());
         return projectRepository.save(project);
     }
 
-    @DeleteMapping("/orm/delete/minortask/{ProjectId}")
+    @DeleteMapping("/orm/project/delete/{ProjectId}")
     public void deleteProject(
             @PathVariable("ProjectId") Integer id) {
         projectRepository.deleteById(id);
