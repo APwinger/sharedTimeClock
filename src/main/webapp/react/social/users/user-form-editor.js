@@ -6,7 +6,10 @@ const UserFormEditor = () => {
     const history = useHistory()
     const [user, setUser] = useState({})
     useEffect(() => {
-        findUserById(id)
+    if(id !== "new") {
+                findUserById(id)
+            }
+
     }, []);
     const findUserById = (id) =>
         userService.findUserById(id)

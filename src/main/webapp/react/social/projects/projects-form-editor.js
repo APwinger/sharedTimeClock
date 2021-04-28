@@ -6,6 +6,11 @@ const ProjectFormEditor = () => {
     const history = useHistory()
     const [project, setProject] = useState({})
 
+    useEffect(() => {
+        if(id !== "new") {
+          findProjectById(id)
+        }}, []);
+
     const findProjectById = (id) =>
         projectService.findProjectById(id)
             .then(project => setProject(project))
@@ -26,6 +31,9 @@ const ProjectFormEditor = () => {
             <h2>Project Editor</h2>
             <label>id</label>
             <input
+            onChange={(e) =>
+                setProject(project =>
+                    ({...project, description: e.target.value}))}
                 value={project.id}/>
 <br/>
             <label>Description</label>
