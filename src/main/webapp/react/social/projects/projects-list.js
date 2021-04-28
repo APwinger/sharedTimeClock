@@ -26,11 +26,17 @@ const UserList = () => {
                         <li key={project.id}>
                             <Link to={`/projects/${project.id}`}>
                                 {project.id},
+                                {project.description}
                             </Link>
                         </li>)
                 }
             </ul>
-
+            <button onClick={() => history.push("/users")}>
+                Users
+            </button>
+            <button onClick={() => history.push("/mappings")}>
+                            Mappings
+            </button>
             </div>
         )
 

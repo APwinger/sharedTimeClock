@@ -1,4 +1,4 @@
-import userService from "./user-service"
+import userService from "./user-service";
 const {useState, useEffect} = React;
 const {useParams, useHistory} = window.ReactRouterDOM;
 const UserFormEditor = () => {

@@ -12,26 +12,16 @@ const InlineProjectEditor = ({project, deleteProject, updateProject}) => {
                     <div className="col">
                         <input
                             className="form-control"
-                            value={projectCopy.firstName}
-                            onChange={(e)=>setProjectCopy(projectCopy => ({...projectCopy, firstName: e.target.value}))}/>
+                            value={projectCopy.id}
+                            onChange={(e)=>setProjectCopy(projectCopy => ({...projectCopy, id: e.target.value}))}/>
                     </div>
                     <div className="col">
                         <input
                             className="form-control"
-                            value={projectCopy.lastName}
-                            onChange={(e)=>setProjectCopy(projectCopy => ({...projectCopy, lastName: e.target.value}))}/>
+                            value={projectCopy.description}
+                            onChange={(e)=>setProjectCopy(projectCopy => ({...projectCopy, description: e.target.value}))}/>
                     </div>
-                    <div className="col">
-                        <input
-                            className="form-control"
-                            value={projectCopy.projectname}
-                            onChange={(e)=>setProjectCopy(projectCopy => ({...projectCopy, projectname: e.target.value}))}/>
-                    </div>
-                    <div className="col-1">
-                        <Link to={`/projects/${projectCopy.id}/blogs`}>
-                            Blogs
-                        </Link>
-                    </div>
+
                     <div className="col-2">
                         <i className="fas fa-2x fa-check float-right margin-left-10px"
                            onClick={() => {
@@ -50,24 +40,15 @@ const InlineProjectEditor = ({project, deleteProject, updateProject}) => {
                 <div className="row">
                     <div className="col">
                         <Link to={`/projects/${projectCopy.id}`}>
-                            {projectCopy.firstName}
+                            {projectCopy.id}
                         </Link>
                     </div>
                     <div className="col">
                         <Link to={`/projects/${projectCopy.id}`}>
-                            {projectCopy.lastName}
+                            {projectCopy.description}
                         </Link>
                     </div>
-                    <div className="col">
-                        <Link to={`/projects/${projectCopy.id}`}>
-                            {projectCopy.projectname}
-                        </Link>
-                    </div>
-                    <div className="col-1">
-                        <Link to={`/projects/${projectCopy.id}/blogs`}>
-                            Blogs
-                        </Link>
-                    </div>
+
                     <div className="col-2">
                         <i className="fas fa-cog fa-2x float-right"
                            onClick={() => setEditing(true)}></i>

@@ -5,9 +5,7 @@ const ProjectFormEditor = () => {
     const {id} = useParams()
     const history = useHistory()
     const [project, setProject] = useState({})
-    useEffect(() => {
-        findProjectById(id)
-    }, []);
+
     const findProjectById = (id) =>
         projectService.findProjectById(id)
             .then(project => setProject(project))

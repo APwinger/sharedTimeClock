@@ -8,8 +8,8 @@ public class UserToProject {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private int user;
-    private int project;
+    private Integer user;
+    private Integer project;
     //can be
     //admin, employee, manager
     private String role;

@@ -17,13 +17,5 @@ public interface UserToProjectRepository
       nativeQuery = true)
     public UserToProject findMapById(@Param("id") Integer id);
 
-
-    @Query(value = "SELECT * FROM users_to_projects WHERE user=:userId",
-            nativeQuery = true)
-    public List<UserToProject> findMapByUserId(@Param("userId") Integer id);
-
-    @Query(value = "SELECT * FROM users_to_projects WHERE project=:projectId",
-      nativeQuery = true)
-    public List<UserToProject> findMapByProjectId(@Param("projectId") Integer id);
 }
 

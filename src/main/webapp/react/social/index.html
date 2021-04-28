@@ -18,18 +18,29 @@
 <script src="users/user-form-editor.js" type="text/jsx" data-type="module" data-plugins="transform-modules-umd"></script>
 <script src="users/user-list.js" type="text/jsx" data-type="module" data-plugins="transform-modules-umd"></script>
 
+<script src="projects/projects-service.js" type="text/jsx" data-type="module" data-plugins="transform-modules-umd"></script>
+<script src="projects/inline-projects-editor.js" type="text/jsx" data-type="module" data-plugins="transform-modules-umd"></script>
+<script src="projects/projects-form-editor.js" type="text/jsx" data-type="module" data-plugins="transform-modules-umd"></script>
+<script src="projects/projects-list.js" type="text/jsx" data-type="module" data-plugins="transform-modules-umd"></script>
+
+<script src="users_to_projects/mapping-service.js" type="text/jsx" data-type="module" data-plugins="transform-modules-umd"></script>
+<script src="users_to_projects/inline-mapping-editor.js" type="text/jsx" data-type="module" data-plugins="transform-modules-umd"></script>
+<script src="users_to_projects/mapping-form-editor.js" type="text/jsx" data-type="module" data-plugins="transform-modules-umd"></script>
+<script src="users_to_projects/mapping-list.js" type="text/jsx" data-type="module" data-plugins="transform-modules-umd"></script>
+
+
 <script src="index.js" type="text/jsx" data-type="module" data-plugins="transform-modules-umd"></script>
 <script type="text/jsx" data-type="module" data-plugins="transform-modules-umd">
     import App from "index";
+    import { Route } from 'react-router-dom';
     ReactDOM.render(
         React.createElement(App),
         document.getElementById('root')
     );
+
 </script>
 
-<a href="./projects.html">
-    <button>Projects!</button>
-</a>
+
 
 </body>
 </html>

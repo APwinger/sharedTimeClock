@@ -14,6 +14,7 @@ const UserList = () => {
     const history = useHistory()
 
     return(
+
             <div>
                 <h2>Users</h2>
                  <button onClick={() => history.push("/users/new")}>
@@ -33,7 +34,16 @@ const UserList = () => {
                 }
             </ul>
 
+            <button onClick={() => history.push("/projects")}>
+                Projects
+            </button>
+            <button onClick={() => history.push("/mappings")}>
+                            Mappings
+            </button>
+
             </div>
+
+
         )
 
 }
