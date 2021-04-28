@@ -5,17 +5,20 @@ const {useState, useEffect} = React;
 const {useParams, useHistory} = window.ReactRouterDOM;
 const MappingFormEditor = () => {
     const {mapId} = useParams()
-    const {userId} = useParams()
-    const {projectId} = useParams()
     const history = useHistory()
     const [mapping, setMapping] = useState({})
-    const [user, setUser] = useState({});
-    const [project, setProject] = useState({});
+    const [user, setUser] = useState({})
+    const [project, setProject] = useState({})
+    const userId = findMappingById(mapId).user
+    const projectId = findMappingById(mapId).project
 
     useEffect(() => {
-        findMappingById(mapId),
-        findUserById(userId),
-        findProjectById(projectId)
+    if(id !== "new") {
+            findMappingById(mapId),
+            findUserById(userId),
+            findProjectById(projectId)
+            }
+
     }, []);
 
     const findUserById = (userId) =>
